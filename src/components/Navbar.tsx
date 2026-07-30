@@ -2,15 +2,16 @@ import React from 'react';
 import { 
   Sparkles, 
   Code2, 
-  Rocket, 
   Briefcase, 
-  User, 
   Mail, 
   FileText, 
   Palette, 
   Bot, 
   Edit3,
-  Globe
+  Globe,
+  Lock,
+  ShieldCheck,
+  Eye
 } from 'lucide-react';
 import { ThemeMode } from '../types';
 
@@ -18,8 +19,10 @@ interface NavbarProps {
   name: string;
   theme: ThemeMode;
   onThemeChange: (theme: ThemeMode) => void;
+  isAdmin: boolean;
   isEditMode: boolean;
   onToggleEditMode: () => void;
+  onOpenAdminAuth: () => void;
   onOpenHostingGuide: () => void;
   onOpenAIAssistant: () => void;
   onOpenResume: () => void;
@@ -29,8 +32,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   name,
   theme,
   onThemeChange,
+  isAdmin,
   isEditMode,
   onToggleEditMode,
+  onOpenAdminAuth,
   onOpenHostingGuide,
   onOpenAIAssistant,
   onOpenResume,
@@ -116,19 +121,41 @@ export const Navbar: React.FC<NavbarProps> = ({
             Resume
           </button>
 
-          {/* Live Edit Mode Toggle */}
-          <button
-            onClick={onToggleEditMode}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
-              isEditMode
-                ? 'bg-amber-500/20 border-amber-500 text-amber-300'
-                : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:text-white'
-            }`}
-            title="Toggle Live Content Customizer"
-          >
-            <Edit3 className="w-3.5 h-3.5" />
-            <span className="hidden xl:inline">{isEditMode ? 'Editing On' : 'Customize Content'}</span>
-          </button>
+          {/* Admin / Edit Mode Toggle */}
+          {isAdmin ? (
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={onToggleEditMode}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+                  isEditMode
+                    ? 'bg-amber-500/20 border-amber-500 text-amber-300'
+                    : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20'
+                }`}
+                title="Toggle Edit Controls"
+              >
+                <Edit3 className="w-3.5 h-3.5" />
+                <span className="hidden xl:inline">{isEditMode ? 'Editing Active' : 'Admin Edit On'}</span>
+              </button>
+
+              <button
+                onClick={onOpenAdminAuth}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium hover:bg-emerald-500/20 transition-all"
+                title="Admin Dashboard & Passcode Settings"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="hidden md:inline">Admin</span>
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onOpenAdminAuth}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700 hover:border-indigo-500/50 text-slate-300 hover:text-white text-xs font-medium transition-all"
+              title="Admin Login for Portfolio Owner"
+            >
+              <Lock className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="hidden sm:inline">Owner Login</span>
+            </button>
+          )}
 
           {/* Theme Selector Dropdown */}
           <div className="relative group">

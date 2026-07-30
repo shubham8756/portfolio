@@ -40,6 +40,27 @@ This repository contains the interactive portfolio and SRE showcase of **Shubham
 
 ---
 
+## ⚙️ CI/CD Automated Deployment Pipeline
+
+This repository includes an automated GitHub Actions workflow (`.github/workflows/deploy.yml`) that triggers on every `git push` or commit to the `main` or `master` branch.
+
+### 🔄 What Happens On Every Commit:
+1. **Lint & Verification**: Automatically runs TypeScript type checking (`tsc --noEmit`).
+2. **Automated Build**: Compiles the client app and server distribution bundle (`npm run build`).
+3. **GitHub Pages Deployment**: Publishes static assets live to GitHub Pages.
+4. **Docker Container Registry Push**: Builds and tags a production Docker image published to GitHub Container Registry (`ghcr.io/shubham8756/portfolio:latest`).
+
+### 🚀 How to Trigger a Deployment:
+Simply commit your changes and push to your GitHub repository:
+```bash
+git add .
+git commit -m "Updated portfolio content and profile photo"
+git push origin main
+```
+The GitHub Actions pipeline will automatically trigger, build, and deploy your changes!
+
+---
+
 ## 💻 Local Development Setup
 
 To run this portfolio application locally on your machine:

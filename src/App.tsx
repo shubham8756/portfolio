@@ -30,6 +30,7 @@ import { HostingGuideModal } from './components/HostingGuideModal';
 import { AIAssistantModal } from './components/AIAssistantModal';
 import { ResumeModal } from './components/ResumeModal';
 import { EditProfileModal } from './components/EditProfileModal';
+import { AdminAuthModal } from './components/AdminAuthModal';
 
 import { Sparkles, ArrowUp, Heart, Globe, Code2, ShieldCheck, Download } from 'lucide-react';
 
@@ -88,13 +89,46 @@ export default function App() {
   });
 
   const [theme, setTheme] = useState<ThemeMode>('dark-slate');
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  
+  // Admin & RBAC state
+  const [isAdmin, setIsAdmin] = useState<boolean>(() => {
+    return localStorage.getItem('portfolio_is_admin') === 'true';
+  });
+  const [adminPasscode, setAdminPasscode] = useState<string>(() => {
+    return localStorage.getItem('portfolio_admin_passcode') || 'admin123';
+  });
+  const [isEditMode, setIsEditMode] = useState<boolean>(() => {
+    return localStorage.getItem('portfolio_is_admin') === 'true';
+  });
 
   // Modals state
   const [showHostingGuide, setShowHostingGuide] = useState<boolean>(false);
   const [showAIAssistant, setShowAIAssistant] = useState<boolean>(false);
   const [showResume, setShowResume] = useState<boolean>(false);
   const [showEditProfile, setShowEditProfile] = useState<boolean>(false);
+  const [showAdminAuthModal, setShowAdminAuthModal] = useState<boolean>(false);
+
+  // Admin auth handlers
+  const handleAdminLogin = (pass: string): boolean => {
+    if (pass === adminPasscode) {
+      setIsAdmin(true);
+      setIsEditMode(true);
+      localStorage.setItem('portfolio_is_admin', 'true');
+      return true;
+    }
+    return false;
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdmin(false);
+    setIsEditMode(false);
+    localStorage.removeItem('portfolio_is_admin');
+  };
+
+  const handleChangeAdminPasscode = (newPass: string) => {
+    setAdminPasscode(newPass);
+    localStorage.setItem('portfolio_admin_passcode', newPass);
+  };
 
   // Auto-save to localStorage
   useEffect(() => {
@@ -157,8 +191,16 @@ export default function App() {
         name={profile.name}
         theme={theme}
         onThemeChange={setTheme}
+        isAdmin={isAdmin}
         isEditMode={isEditMode}
-        onToggleEditMode={() => setIsEditMode(!isEditMode)}
+        onToggleEditMode={() => {
+          if (!isAdmin) {
+            setShowAdminAuthModal(true);
+          } else {
+            setIsEditMode(!isEditMode);
+          }
+        }}
+        onOpenAdminAuth={() => setShowAdminAuthModal(true)}
         onOpenHostingGuide={() => setShowHostingGuide(true)}
         onOpenAIAssistant={() => setShowAIAssistant(true)}
         onOpenResume={() => setShowResume(true)}
@@ -168,15 +210,21 @@ export default function App() {
       <main>
         
         {/* Customization Banner when Edit Mode is active */}
-        {isEditMode && (
+        {isEditMode && isAdmin && (
           <div className="bg-amber-500/20 border-b border-amber-500/30 px-4 py-2 text-center text-xs text-amber-300 font-medium flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4 animate-pulse" />
-            <span>Customize Mode Active: Click button below to update your bio, projects, and skills live!</span>
+            <span>Admin Edit Mode Active: You can upload photos, update your bio, projects, and skills live!</span>
             <button
               onClick={() => setShowEditProfile(true)}
               className="px-3 py-1 rounded bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 transition-colors ml-2"
             >
               Edit Profile Content
+            </button>
+            <button
+              onClick={handleAdminLogout}
+              className="px-2.5 py-1 rounded bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors ml-1 text-[11px]"
+            >
+              Lock Admin Session
             </button>
           </div>
         )}
@@ -184,6 +232,7 @@ export default function App() {
         {/* Hero Section */}
         <Hero
           profile={profile}
+          isAdmin={isAdmin}
           onOpenContact={() => {
             const contactEl = document.getElementById('contact');
             contactEl?.scrollIntoView({ behavior: 'smooth' });
@@ -191,6 +240,7 @@ export default function App() {
           onOpenResume={() => setShowResume(true)}
           onOpenAIAssistant={() => setShowAIAssistant(true)}
           onEditProfile={() => setShowEditProfile(true)}
+          onRequireAdminAuth={() => setShowAdminAuthModal(true)}
         />
 
         {/* Projects Section */}
@@ -352,6 +402,16 @@ export default function App() {
           profile={profile}
           onSaveProfile={(updatedProfile) => setProfile(updatedProfile)}
           onClose={() => setShowEditProfile(false)}
+        />
+      )}
+
+      {showAdminAuthModal && (
+        <AdminAuthModal
+          isAdmin={isAdmin}
+          onLogin={handleAdminLogin}
+          onLogout={handleAdminLogout}
+          onChangePasscode={handleChangeAdminPasscode}
+          onClose={() => setShowAdminAuthModal(false)}
         />
       )}
 
