@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Save, User, Briefcase, Code2, Plus, Trash2, Check } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { X, Save, User, Briefcase, Code2, Plus, Trash2, Check, Upload, Image, Camera } from 'lucide-react';
 import { PortfolioProfile, Project, Skill, WorkExperience } from '../types';
 
 interface EditProfileModalProps {
@@ -120,13 +120,60 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Avatar / Profile Photo URL</label>
-            <input
-              type="text"
-              value={formData.avatarUrl}
-              onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
-            />
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Profile Photo / Avatar
+            </label>
+            <div className="flex items-center gap-4 bg-slate-950 p-3 rounded-2xl border border-slate-800">
+              <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-indigo-500/40 bg-slate-900 shrink-0">
+                {formData.avatarUrl ? (
+                  <img
+                    src={formData.avatarUrl}
+                    alt="Profile Preview"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500">
+                    <User className="w-8 h-8" />
+                  </div>
+                )}
+              </div>
+
+              <div className="flex-1 space-y-2">
+                <div className="flex items-center gap-2">
+                  <label className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold cursor-pointer inline-flex items-center gap-1.5 transition-colors shadow">
+                    <Upload className="w-3.5 h-3.5" />
+                    Upload Image File
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            if (reader.result) {
+                              setFormData({ ...formData, avatarUrl: reader.result as string });
+                            }
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                  </label>
+                  <span className="text-[11px] text-slate-500">Supports JPG, PNG, WEBP</span>
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Or paste image URL (https://...)"
+                  value={formData.avatarUrl}
+                  onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
+                  className="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="pt-2 border-t border-slate-800">

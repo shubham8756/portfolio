@@ -12,7 +12,8 @@ import {
   CheckCircle2,
   Code,
   Award,
-  Zap
+  Zap,
+  Camera
 } from 'lucide-react';
 import { PortfolioProfile } from '../types';
 
@@ -146,14 +147,26 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="relative bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-2xl backdrop-blur-xl">
                 
                 {/* Avatar Frame */}
-                <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-indigo-500/30 shadow-xl group-hover:border-indigo-400 transition-all">
+                <div 
+                  onClick={onEditProfile}
+                  className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-indigo-500/30 shadow-xl group-hover:border-indigo-400 transition-all cursor-pointer group/avatar"
+                  title="Click to edit profile & photo"
+                >
                   <img
                     src={profile.avatarUrl}
                     alt={profile.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover/avatar:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  {/* Photo Edit Overlay */}
+                  <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/avatar:opacity-100 flex flex-col items-center justify-center gap-1 transition-opacity duration-200">
+                    <span className="p-2 rounded-full bg-indigo-600 text-white shadow">
+                      <Camera className="w-4 h-4" />
+                    </span>
+                    <span className="text-[10px] font-semibold text-white">Change Photo</span>
+                  </div>
                 </div>
 
                 {/* Quick Interactive Badges */}
