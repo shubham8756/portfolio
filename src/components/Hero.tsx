@@ -167,6 +167,19 @@ export const Hero: React.FC<HeroProps> = ({
                     alt={profile.name}
                     className="w-full h-full object-cover group-hover/avatar:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      // Fallback if local path fails to load
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (!target.dataset.fallbackTried) {
+                        target.dataset.fallbackTried = 'true';
+                        // Try /Shubham.png if coming from public directory, or fallback to Unsplash
+                        if (profile.avatarUrl.includes('Shubham')) {
+                          target.src = '/Shubham.png';
+                        } else {
+                          target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600';
+                        }
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                   
