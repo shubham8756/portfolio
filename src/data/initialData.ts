@@ -8,7 +8,7 @@ export const initialProfile: PortfolioProfile = {
   location: "Bengaluru, India & Remote",
   // Note: For custom images on Vercel or local Vite, place your Shubham.png image in the /public folder (e.g., /public/Shubham.png)
   // and reference it as "/Shubham.png".
-  avatarUrl: "/Shubham.svg",
+  avatarUrl: "/Shubham.png",
   availability: "Available for Hire",
   socialLinks: [
     { platform: "github", url: "https://github.com/shubham8756/", label: "GitHub" },
