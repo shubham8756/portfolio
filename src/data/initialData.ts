@@ -6,7 +6,9 @@ export const initialProfile: PortfolioProfile = {
   subtitle: "Specializing in Kubernetes, Multi-Cloud (AWS & GCP), Terraform IaC, Observability, and Zero-Downtime CI/CD Automation.",
   bio: "Passionate Site Reliability Engineer with 5+ years of experience architecting resilient multi-cloud infrastructures, managing high-throughput Kubernetes clusters, and building automated GitOps CI/CD pipelines. Proven track record in scaling mission-critical cloud applications, optimizing infrastructure costs, reducing MTTR with Prometheus/Datadog, and earning Apple Store launch awards.",
   location: "Bengaluru, India & Remote",
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+  // Note for Vercel deployment: Place your Shubham.png image in the /public folder (e.g., /public/Shubham.png)
+  // and reference it as "/Shubham.png". Vite will automatically serve it at the root domain on Vercel.
+  avatarUrl: "/Shubham.png",
   availability: "Available for Hire",
   socialLinks: [
     { platform: "github", url: "https://github.com/shubham8756/", label: "GitHub" },
