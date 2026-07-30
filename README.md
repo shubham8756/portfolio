@@ -1,4 +1,4 @@
-# Shubham Pandey - Site Reliability Engineering Portfolio
+# Shubham Pandey - Portfolio
 
 > **Site Reliability Engineer | Cloud Infrastructure & Automation Specialist**  
 > *Specializing in Kubernetes (EKS/GKE), Multi-Cloud (AWS & GCP), Terraform IaC, Observability (Datadog/Prometheus), and Zero-Downtime CI/CD Automation.*
