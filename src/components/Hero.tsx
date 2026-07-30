@@ -176,7 +176,7 @@ export const Hero: React.FC<HeroProps> = ({
                       <Camera className="w-4 h-4" />
                     </span>
                     <span className="text-[10px] font-semibold text-white">
-                      {isAdmin ? 'Change Photo' : 'Owner Login to Edit'}
+                      {isAdmin ? 'Change Photo' : 'Admin Login to Edit'}
                     </span>
                   </div>
                 </div>

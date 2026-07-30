@@ -153,7 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Admin Login for Portfolio Owner"
             >
               <Lock className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="hidden sm:inline">Owner Login</span>
+              <span className="hidden sm:inline">Admin Login</span>
             </button>
           )}
 
