@@ -15,16 +15,10 @@ import { Project } from '../types';
 
 interface ProjectsSectionProps {
   projects: Project[];
-  isEditMode?: boolean;
-  onAddProject?: () => void;
-  onEditProject?: (project: Project) => void;
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   projects,
-  isEditMode,
-  onAddProject,
-  onEditProject,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -72,16 +66,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 transition-all"
               />
             </div>
-
-            {isEditMode && onAddProject && (
-              <button
-                onClick={onAddProject}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition-all shrink-0"
-              >
-                <Plus className="w-4 h-4" />
-                Add Project
-              </button>
-            )}
           </div>
         </div>
 
@@ -130,16 +114,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       </span>
                     )}
                   </div>
-
-                  {/* Edit action if in edit mode */}
-                  {isEditMode && onEditProject && (
-                    <button
-                      onClick={() => onEditProject(project)}
-                      className="absolute top-3 right-3 p-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-amber-400 hover:text-white text-xs font-medium"
-                    >
-                      Edit
-                    </button>
-                  )}
                 </div>
 
                 {/* Content */}

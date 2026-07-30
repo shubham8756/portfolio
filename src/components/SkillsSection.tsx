@@ -4,16 +4,10 @@ import { Skill } from '../types';
 
 interface SkillsSectionProps {
   skills: Skill[];
-  isEditMode?: boolean;
-  onAddSkill?: () => void;
-  onEditSkill?: (skill: Skill) => void;
 }
 
 export const SkillsSection: React.FC<SkillsSectionProps> = ({
   skills,
-  isEditMode,
-  onAddSkill,
-  onEditSkill,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -64,16 +58,6 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                 className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 transition-all"
               />
             </div>
-
-            {isEditMode && onAddSkill && (
-              <button
-                onClick={onAddSkill}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md transition-all shrink-0"
-              >
-                <Plus className="w-4 h-4" />
-                Add Skill
-              </button>
-            )}
           </div>
         </div>
 
@@ -124,14 +108,6 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                     <span className="p-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px]" title="Top Competency">
                       <Star className="w-3 h-3 fill-amber-400" />
                     </span>
-                  )}
-                  {isEditMode && onEditSkill && (
-                    <button
-                      onClick={() => onEditSkill(skill)}
-                      className="text-[10px] text-amber-400 hover:underline"
-                    >
-                      Edit
-                    </button>
                   )}
                   <span className="text-xs font-mono font-semibold text-indigo-400">
                     {skill.level}%

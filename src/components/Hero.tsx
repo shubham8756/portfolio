@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   MapPin, 
   Sparkles, 
-  Briefcase, 
   ArrowRight, 
   Download, 
   Github, 
@@ -12,29 +11,22 @@ import {
   CheckCircle2,
   Code,
   Award,
-  Zap,
-  Camera
+  Zap
 } from 'lucide-react';
 import { PortfolioProfile } from '../types';
 
 interface HeroProps {
   profile: PortfolioProfile;
-  isAdmin?: boolean;
   onOpenContact: () => void;
   onOpenResume: () => void;
   onOpenAIAssistant: () => void;
-  onEditProfile?: () => void;
-  onRequireAdminAuth?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   profile,
-  isAdmin = false,
   onOpenContact,
   onOpenResume,
   onOpenAIAssistant,
-  onEditProfile,
-  onRequireAdminAuth,
 }) => {
   const socialIconsMap: Record<string, React.ReactNode> = {
     github: <Github className="w-4 h-4" />,
@@ -152,20 +144,12 @@ export const Hero: React.FC<HeroProps> = ({
                 
                 {/* Avatar Frame */}
                 <div 
-                  onClick={() => {
-                    if (isAdmin) {
-                      onEditProfile?.();
-                    } else {
-                      onRequireAdminAuth?.();
-                    }
-                  }}
-                  className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-indigo-500/30 shadow-xl group-hover:border-indigo-400 transition-all cursor-pointer group/avatar"
-                  title={isAdmin ? "Click to edit profile details & photo" : "Admin login required to edit profile photo"}
+                  className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-indigo-500/30 shadow-xl group-hover:border-indigo-400 transition-all"
                 >
                   <img
                     src={profile.avatarUrl}
                     alt={profile.name}
-                    className="w-full h-full object-cover group-hover/avatar:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget as HTMLImageElement;
@@ -178,16 +162,6 @@ export const Hero: React.FC<HeroProps> = ({
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-                  
-                  {/* Photo Edit Overlay */}
-                  <div className="absolute inset-0 bg-slate-950/70 opacity-0 group-hover/avatar:opacity-100 flex flex-col items-center justify-center gap-1 transition-opacity duration-200">
-                    <span className="p-2 rounded-full bg-indigo-600 text-white shadow">
-                      <Camera className="w-4 h-4" />
-                    </span>
-                    <span className="text-[10px] font-semibold text-white">
-                      {isAdmin ? 'Change Photo' : 'Admin Login to Edit'}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Quick Interactive Badges */}

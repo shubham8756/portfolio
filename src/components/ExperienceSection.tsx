@@ -7,9 +7,6 @@ interface ExperienceSectionProps {
   education: Education[];
   certifications?: Certification[];
   awards?: AwardType[];
-  isEditMode?: boolean;
-  onAddExperience?: () => void;
-  onEditExperience?: (exp: WorkExperience) => void;
 }
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
@@ -17,9 +14,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   education,
   certifications = [],
   awards = [],
-  isEditMode,
-  onAddExperience,
-  onEditExperience,
 }) => {
   const [activeTab, setActiveTab] = useState<'work' | 'certifications' | 'awards' | 'education'>('work');
 
@@ -91,16 +85,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
               <GraduationCap className="w-3.5 h-3.5" />
               Education ({education.length})
             </button>
-
-            {isEditMode && onAddExperience && activeTab === 'work' && (
-              <button
-                onClick={onAddExperience}
-                className="p-2 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 text-xs"
-                title="Add Work Experience"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            )}
           </div>
         </div>
 
@@ -147,14 +131,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                         <MapPin className="w-3.5 h-3.5 text-rose-400" />
                         {exp.location}
                       </span>
-                      {isEditMode && onEditExperience && (
-                        <button
-                          onClick={() => onEditExperience(exp)}
-                          className="text-amber-400 text-xs font-sans hover:underline ml-2"
-                        >
-                          Edit
-                        </button>
-                      )}
                     </div>
                   </div>
 
