@@ -1,25 +1,44 @@
 import React, { useState, useRef } from 'react';
-import { X, Save, User, Briefcase, Code2, Plus, Trash2, Check, Upload, Image, Camera } from 'lucide-react';
+import { X, Save, User, Briefcase, Code2, Plus, Trash2, Check, Upload, Image, Camera, Download, FileJson, Info } from 'lucide-react';
 import { PortfolioProfile, Project, Skill, WorkExperience } from '../types';
 
 interface EditProfileModalProps {
   profile: PortfolioProfile;
   onSaveProfile: (profile: PortfolioProfile) => void;
+  onExportConfig?: () => void;
+  onImportConfig?: (jsonText: string) => void;
   onClose: () => void;
 }
 
 export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   profile,
   onSaveProfile,
+  onExportConfig,
+  onImportConfig,
   onClose,
 }) => {
   const [formData, setFormData] = useState<PortfolioProfile>({ ...profile });
-  const [activeTab, setActiveTab] = useState<'profile' | 'stats'>('profile');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     onSaveProfile(formData);
     onClose();
+  };
+
+  const handleJsonImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const text = event.target?.result as string;
+        if (text && onImportConfig) {
+          onImportConfig(text);
+          onClose();
+        }
+      };
+      reader.readAsText(file);
+    }
   };
 
   return (
@@ -167,11 +186,19 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
                 <input
                   type="text"
-                  placeholder="Or paste image URL (https://...)"
+                  placeholder="Or paste public image URL (https://...)"
                   value={formData.avatarUrl}
                   onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
                   className="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
+              </div>
+            </div>
+
+            {/* Storage explanation banner */}
+            <div className="mt-2.5 p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-slate-300 text-[11px] leading-relaxed flex items-start gap-2">
+              <Info className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+              <div>
+                <strong>Cross-Browser / Multi-Device Sync:</strong> Uploaded image files are saved locally in this browser. To make your custom profile & photo load automatically on every browser/device, paste a direct public Image URL (from Unsplash, Imgur, or GitHub) or export your config JSON below!
               </div>
             </div>
           </div>
@@ -221,22 +248,59 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
             </div>
           </div>
 
-          {/* Footer actions */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-700"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow"
-            >
-              <Save className="w-4 h-4" />
-              Save Changes
-            </button>
+          {/* Backup / Export / Import Tools */}
+          <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {onExportConfig && (
+                <button
+                  type="button"
+                  onClick={onExportConfig}
+                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1.5 border border-slate-700 transition-colors"
+                  title="Download all customized data as a JSON file to transfer across browsers"
+                >
+                  <Download className="w-3.5 h-3.5 text-indigo-400" />
+                  Export Portfolio JSON
+                </button>
+              )}
+
+              {onImportConfig && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1.5 border border-slate-700 transition-colors"
+                    title="Import a saved portfolio JSON file on any browser"
+                  >
+                    <FileJson className="w-3.5 h-3.5 text-emerald-400" />
+                    Import Portfolio JSON
+                  </button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".json,application/json"
+                    className="hidden"
+                    onChange={handleJsonImport}
+                  />
+                </>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-700"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow"
+              >
+                <Save className="w-4 h-4" />
+                Save Changes
+              </button>
+            </div>
           </div>
 
         </form>

@@ -35,50 +35,11 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { Sparkles, ArrowUp, Heart, Globe, Code2, ShieldCheck, Download } from 'lucide-react';
 
 export default function App() {
-  // Persistence version key to migrate from stale placeholder data
-  const DATA_VERSION = 'v2_shubham_sre';
-
-  // Persistence state
-  const [profile, setProfile] = useState<PortfolioProfile>(() => {
-    const ver = localStorage.getItem('portfolio_version');
-    const saved = localStorage.getItem('portfolio_profile');
-    if (ver !== DATA_VERSION || (saved && saved.includes('Alex Chen'))) {
-      localStorage.setItem('portfolio_version', DATA_VERSION);
-      localStorage.setItem('portfolio_profile', JSON.stringify(initialProfile));
-      localStorage.setItem('portfolio_projects', JSON.stringify(initialProjects));
-      localStorage.setItem('portfolio_skills', JSON.stringify(initialSkills));
-      localStorage.setItem('portfolio_experience', JSON.stringify(initialExperience));
-      return initialProfile;
-    }
-    return saved ? JSON.parse(saved) : initialProfile;
-  });
-
-  const [projects, setProjects] = useState<Project[]>(() => {
-    const ver = localStorage.getItem('portfolio_version');
-    const saved = localStorage.getItem('portfolio_projects');
-    if (ver !== DATA_VERSION || (saved && saved.includes('NovaFlow'))) {
-      return initialProjects;
-    }
-    return saved ? JSON.parse(saved) : initialProjects;
-  });
-
-  const [skills, setSkills] = useState<Skill[]>(() => {
-    const ver = localStorage.getItem('portfolio_version');
-    const saved = localStorage.getItem('portfolio_skills');
-    if (ver !== DATA_VERSION || (saved && saved.includes('sk-1') && saved.includes('React 19'))) {
-      return initialSkills;
-    }
-    return saved ? JSON.parse(saved) : initialSkills;
-  });
-
-  const [experience, setExperience] = useState<WorkExperience[]>(() => {
-    const ver = localStorage.getItem('portfolio_version');
-    const saved = localStorage.getItem('portfolio_experience');
-    if (ver !== DATA_VERSION || (saved && saved.includes('Apex Tech Labs'))) {
-      return initialExperience;
-    }
-    return saved ? JSON.parse(saved) : initialExperience;
-  });
+  // Use code in initialData.ts as primary source of truth so code edits apply immediately
+  const [profile, setProfile] = useState<PortfolioProfile>(initialProfile);
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [skills, setSkills] = useState<Skill[]>(initialSkills);
+  const [experience, setExperience] = useState<WorkExperience[]>(initialExperience);
 
   const [education] = useState<Education[]>(initialEducation);
   const [certifications] = useState<Certification[]>(initialCertifications);
@@ -90,16 +51,12 @@ export default function App() {
 
   const [theme, setTheme] = useState<ThemeMode>('dark-slate');
   
-  // Admin & RBAC state
-  const [isAdmin, setIsAdmin] = useState<boolean>(() => {
-    return localStorage.getItem('portfolio_is_admin') === 'true';
-  });
+  // Default to clean View-Only Mode
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [adminPasscode, setAdminPasscode] = useState<string>(() => {
     return localStorage.getItem('portfolio_admin_passcode') || 'admin123';
   });
-  const [isEditMode, setIsEditMode] = useState<boolean>(() => {
-    return localStorage.getItem('portfolio_is_admin') === 'true';
-  });
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   // Modals state
   const [showHostingGuide, setShowHostingGuide] = useState<boolean>(false);
@@ -110,7 +67,8 @@ export default function App() {
 
   // Admin auth handlers
   const handleAdminLogin = (pass: string): boolean => {
-    if (pass === adminPasscode) {
+    const currentPasscode = localStorage.getItem('portfolio_admin_passcode') || adminPasscode;
+    if (pass === currentPasscode) {
       setIsAdmin(true);
       setIsEditMode(true);
       localStorage.setItem('portfolio_is_admin', 'true');
@@ -129,6 +87,10 @@ export default function App() {
     setAdminPasscode(newPass);
     localStorage.setItem('portfolio_admin_passcode', newPass);
   };
+
+  useEffect(() => {
+    localStorage.setItem('portfolio_admin_passcode', adminPasscode);
+  }, [adminPasscode]);
 
   // Auto-save to localStorage
   useEffect(() => {
@@ -172,6 +134,31 @@ export default function App() {
     link.download = `${profile.name.toLowerCase().replace(/\s+/g, '_')}_portfolio.json`;
     link.click();
     URL.revokeObjectURL(url);
+  };
+
+  const handleImportJSON = (jsonText: string) => {
+    try {
+      const data = JSON.parse(jsonText);
+      if (data.profile) {
+        setProfile(data.profile);
+        localStorage.setItem('portfolio_profile', JSON.stringify(data.profile));
+      }
+      if (data.projects && Array.isArray(data.projects)) {
+        setProjects(data.projects);
+        localStorage.setItem('portfolio_projects', JSON.stringify(data.projects));
+      }
+      if (data.skills && Array.isArray(data.skills)) {
+        setSkills(data.skills);
+        localStorage.setItem('portfolio_skills', JSON.stringify(data.skills));
+      }
+      if (data.experience && Array.isArray(data.experience)) {
+        setExperience(data.experience);
+        localStorage.setItem('portfolio_experience', JSON.stringify(data.experience));
+      }
+      alert('Portfolio configuration imported successfully!');
+    } catch (err) {
+      alert('Failed to parse portfolio JSON configuration.');
+    }
   };
 
   // Theme container classes
@@ -401,6 +388,8 @@ export default function App() {
         <EditProfileModal
           profile={profile}
           onSaveProfile={(updatedProfile) => setProfile(updatedProfile)}
+          onExportConfig={handleExportJSON}
+          onImportConfig={handleImportJSON}
           onClose={() => setShowEditProfile(false)}
         />
       )}

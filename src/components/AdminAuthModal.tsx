@@ -151,9 +151,6 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                   {showPasscode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              <p className="text-[11px] text-slate-500 mt-1.5 flex items-center justify-between">
-                <span>Default Passcode: <code className="text-indigo-400 bg-slate-950 px-1.5 py-0.5 rounded">admin123</code></span>
-              </p>
             </div>
 
             <div className="flex items-center gap-3 pt-2">
