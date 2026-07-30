@@ -171,12 +171,9 @@ export const Hero: React.FC<HeroProps> = ({
                       const target = e.currentTarget as HTMLImageElement;
                       if (!target.dataset.fallbackCount) {
                         target.dataset.fallbackCount = '1';
-                        if (profile.avatarUrl !== '/Shubham.png') {
-                          target.src = '/Shubham.png';
-                          return;
-                        }
+                        target.src = '/Shubham.svg';
+                        return;
                       }
-                      // Ultimate fallback if local image is missing
                       target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600';
                     }}
                   />
