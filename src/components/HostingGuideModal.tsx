@@ -23,14 +23,14 @@ export const HostingGuideModal: React.FC<HostingGuideModalProps> = ({
   onClose,
   onExportJSON,
 }) => {
-  const [activePlatform, setActivePlatform] = useState<'vercel' | 'netlify' | 'github' | 'cloudflare'>('vercel');
+  const [activePlatform, setActivePlatform] = useState<'vercel' | 'netlify' | 'cloudflare'>('vercel');
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
 
   const platforms = [
     {
       id: 'vercel',
       name: 'Vercel',
-      badge: 'Best Overall for React/Vite',
+      badge: 'Active & Recommended',
       freeBandwidth: '100 GB / month',
       customDomain: 'Included Free',
       ssl: 'Automatic HTTPS',
@@ -51,7 +51,7 @@ export const HostingGuideModal: React.FC<HostingGuideModalProps> = ({
     {
       id: 'netlify',
       name: 'Netlify',
-      badge: 'Best for Drag & Drop or Git',
+      badge: 'Best for Drag & Drop',
       freeBandwidth: '100 GB / month',
       customDomain: 'Included Free',
       ssl: 'Automatic Let\'s Encrypt',
@@ -66,27 +66,6 @@ export const HostingGuideModal: React.FC<HostingGuideModalProps> = ({
         'Log in to Netlify.com.',
         'Drag and drop your `dist` folder directly onto Netlify dashboard, OR connect your GitHub repo.',
         'Your site is instantly live with a free SSL certificate!'
-      ]
-    },
-    {
-      id: 'github',
-      name: 'GitHub Pages',
-      badge: '100% Free Forever',
-      freeBandwidth: '100 GB / month',
-      customDomain: 'Supported',
-      ssl: 'Enforced HTTPS',
-      easeScore: '9.2 / 10',
-      description: 'Directly host your static web applications directly from your GitHub repository branch with automated GitHub Actions workflows.',
-      commands: [
-        'npm install -D gh-pages',
-        'npm run build',
-        'npx gh-pages -d dist'
-      ],
-      steps: [
-        'Install `gh-pages` helper package.',
-        'In `package.json`, add `"deploy": "gh-pages -d dist"`.',
-        'Run `npm run deploy`.',
-        'In GitHub repo Settings -> Pages, select `gh-pages` branch. Live!'
       ]
     },
     {
@@ -161,7 +140,7 @@ export const HostingGuideModal: React.FC<HostingGuideModalProps> = ({
           </div>
 
           {/* Platform Switcher Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {platforms.map((p) => (
               <button
                 key={p.id}

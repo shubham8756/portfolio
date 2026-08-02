@@ -6,7 +6,7 @@ export const initialProfile: PortfolioProfile = {
   subtitle: "Specializing in Site Reliability Engineering, AWS & GCP Multi-Cloud, Kubernetes, Performance Engineering, and CI/CD Automation.",
   bio: "Currently working as a Software Engineer (SRE) at Xoriant with 3+ years of experience in cloud infrastructure, reliability engineering, and DevOps automation across AWS and GCP environments. Proven track record of managing high-traffic Apple Online Store production systems, improving availability to 99.95%, reducing MTTR by 30%, and optimizing deployment times from 15 to 6 minutes through Kubernetes, Terraform IaC, Prometheus/Grafana observability, and automated CI/CD pipelines.",
   location: "Bengaluru, Karnataka, India",
-  avatarUrl: "/Shubham.svg",
+  avatarUrl: "/Shubham.png",
   availability: "Available for Hire",
   socialLinks: [
     { platform: "github", url: "https://github.com/shubham8756/", label: "GitHub" },
