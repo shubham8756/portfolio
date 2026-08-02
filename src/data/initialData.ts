@@ -2,179 +2,204 @@ import { PortfolioProfile, Project, Skill, WorkExperience, Education, Testimonia
 
 export const initialProfile: PortfolioProfile = {
   name: "Shubham Pandey",
-  title: "Site Reliability Engineer | Cloud Infrastructure & Automation Specialist",
-  subtitle: "Specializing in Kubernetes, Multi-Cloud (AWS & GCP), Terraform IaC, Observability, and Zero-Downtime CI/CD Automation.",
-  bio: "Passionate Site Reliability Engineer with 5+ years of experience architecting resilient multi-cloud infrastructures, managing high-throughput Kubernetes clusters, and building automated GitOps CI/CD pipelines. Proven track record in scaling mission-critical cloud applications, optimizing infrastructure costs, reducing MTTR with Prometheus/Datadog, and earning Apple Store launch awards.",
-  location: "Bengaluru, India & Remote",
-  // Note: For custom images on Vercel or local Vite, place your Shubham.png image in the /public folder (e.g., /public/Shubham.png)
-  // and reference it as "/Shubham.png".
-  avatarUrl: "/Shubham.png",
+  title: "Software Engineer (Site Reliability Engineer) | AWS & GCP | Kubernetes & DevOps",
+  subtitle: "Specializing in Site Reliability Engineering, AWS & GCP Multi-Cloud, Kubernetes, Performance Engineering, and CI/CD Automation.",
+  bio: "Currently working as a Software Engineer (SRE) at Xoriant with 3+ years of experience in cloud infrastructure, reliability engineering, and DevOps automation across AWS and GCP environments. Proven track record of managing high-traffic Apple Online Store production systems, improving availability to 99.95%, reducing MTTR by 30%, and optimizing deployment times from 15 to 6 minutes through Kubernetes, Terraform IaC, Prometheus/Grafana observability, and automated CI/CD pipelines.",
+  location: "Bengaluru, Karnataka, India",
+  avatarUrl: "/Shubham.svg",
   availability: "Available for Hire",
   socialLinks: [
     { platform: "github", url: "https://github.com/shubham8756/", label: "GitHub" },
     { platform: "linkedin", url: "https://www.linkedin.com/in/shubham-pandey-dev/", label: "LinkedIn" },
     { platform: "email", url: "mailto:shubhampandey8756@gmail.com", label: "Email" },
-    { platform: "twitter", url: "https://x.com", label: "X / Twitter" },
   ],
   stats: {
-    yearsExperience: 5,
-    projectsCompleted: 35,
-    githubContributions: 1850,
-    happyClients: 15,
+    yearsExperience: 3,
+    projectsCompleted: 20,
+    githubContributions: 1450,
+    happyClients: 8,
   }
 };
 
 export const initialProjects: Project[] = [
   {
     id: "proj-1",
-    title: "GitOps Multi-Region EKS Automation Engine",
-    tagline: "High-availability Kubernetes deployment engine with ArgoCD & Terraform",
-    description: "Architected a self-healing multi-region EKS cluster environment with GitOps workflows, automated failover capabilities, and zero-downtime cluster upgrades.",
-    longDescription: "Designed to support 200+ microservices using Terraform IaC, ArgoCD, and Helm. Reduced deployment friction across environments and achieved 99.99% uptime with automated canary rollouts via Istio service mesh.",
-    category: "Containers & Orchestration",
-    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800",
-    tags: ["Kubernetes", "AWS EKS", "ArgoCD", "Terraform", "Helm", "Istio"],
+    title: "Apple Online Store Performance Engineering & Reliability",
+    tagline: "High-concurrency load testing & reliability management for millions of users during product launches",
+    description: "Managed system reliability, SLI/SLO tracking, and capacity planning for Apple Online Store systems during major product launches.",
+    longDescription: "Led performance testing for 500+ backend services using Apache JMeter. Simulated high-traffic scenarios to identify bottlenecks across applications, databases, and AWS infrastructure, ensuring 99.95% system availability and zero downtime during peak releases.",
+    category: "Performance Engineering",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    tags: ["AWS", "Apache JMeter", "Kubernetes", "Splunk", "Capacity Planning", "Incident Management"],
     featured: true,
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com",
+    demoUrl: "https://github.com/shubham8756/",
+    githubUrl: "https://github.com/shubham8756/",
     metrics: [
-      { label: "Uptime SLA", value: "99.99%" },
-      { label: "Deploy Time", value: "-75%" },
-      { label: "Cluster Failover", value: "< 45s" }
+      { label: "Availability", value: "99.95%" },
+      { label: "Backend Services", value: "500+" },
+      { label: "MTTR Reduction", value: "30%" }
     ]
   },
   {
     id: "proj-2",
-    title: "FinOps Cloud Cost Optimization Framework",
-    tagline: "Automated AWS & GCP resource auto-scaling & spot instance orchestration",
-    description: "Engineered an automated FinOps pipeline using Karpenter, AWS Spot instances, and custom Python serverless scripts to eliminate idle compute footprint.",
-    longDescription: "Integrated automated right-sizing alerts and automated shutdown triggers for non-prod environments. Saved over $120,000 annually while maintaining strict performance thresholds.",
-    category: "Cloud & Infrastructure",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-    tags: ["AWS", "GCP", "Karpenter", "Terraform", "Python", "FinOps"],
+    title: "Kubernetes Auto Healing & Container Orchestration",
+    tagline: "EKS & GKE cluster auto-scaling, ingress management, and cluster fault debugging",
+    description: "Deployed containerized workloads on Kubernetes (EKS/GKE) with Horizontal Pod Autoscaling (HPA) and zero-downtime releases.",
+    longDescription: "Architected resilient Kubernetes cluster environments with HPA and custom resource limits. Reduced production incidents by rapidly diagnosing CrashLoopBackOff and OOMKilled events, managing ingress controllers, and troubleshooting TCP/IP and DNS routing.",
+    category: "Containers & Orchestration",
+    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800",
+    tags: ["Kubernetes (EKS/GKE)", "Docker", "HPA", "Linux", "Shell Scripting", "Ingress"],
     featured: true,
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com",
+    demoUrl: "https://github.com/shubham8756/",
+    githubUrl: "https://github.com/shubham8756/",
     metrics: [
-      { label: "Annual Savings", value: "$120k/yr" },
-      { label: "Idle Waste Reduced", value: "42%" }
+      { label: "Deploy Failures", value: "-25%" },
+      { label: "Workload Auto-Scale", value: "100%" }
     ]
   },
   {
     id: "proj-3",
-    title: "Unified Cloud Observability & SLA Monitoring Hub",
-    tagline: "Centralized telemetry, distributed tracing & proactive incident response system",
-    description: "Implemented a full-stack observability platform combining Datadog, Prometheus, Grafana, and OpenTelemetry across distributed microservices.",
-    longDescription: "Established Service Level Indicators (SLIs) and Service Level Objectives (SLOs) with automated PagerDuty routing, cutting mean time to resolution (MTTR) by 45%.",
-    category: "Observability",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
-    tags: ["Datadog", "Prometheus", "Grafana", "OpenTelemetry", "PagerDuty"],
+    title: "AWS & GCP Infrastructure Automation Platform",
+    tagline: "Infrastructure as Code (IaC) with Terraform, CloudFormation, and Ansible",
+    description: "Built scalable multi-cloud infrastructure (EC2, EKS, VPC, S3, IAM) across AWS and GCP using Terraform & CloudFormation.",
+    longDescription: "Automated end-to-end cloud environment provisioning and configuration management with Ansible, reducing manual operational tasks by 35% and enforcing security best practices across cloud environments.",
+    category: "Cloud & Infrastructure",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    tags: ["AWS", "GCP", "Terraform", "CloudFormation", "Ansible", "Python"],
     featured: true,
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com",
+    demoUrl: "https://github.com/shubham8756/",
+    githubUrl: "https://github.com/shubham8756/",
     metrics: [
-      { label: "MTTR Reduction", value: "-45%" },
-      { label: "Alert Noise", value: "-60%" }
+      { label: "Manual Effort Cut", value: "35%" },
+      { label: "IaC Coverage", value: "100%" }
     ]
   },
   {
     id: "proj-4",
-    title: "Apple Online Store Launch Infrastructure & High Concurrency Architecture",
-    tagline: "Resilient infrastructure provisioning and CDN tuning for high peak traffic events",
-    description: "Provisioned and tuned peak-capacity infrastructure, CDN caching rules, and load balancers during major Apple Online Store releases, earning official launch awards.",
-    longDescription: "Engineered strict load testing models with Locust and k6, handling traffic spikes over 10M requests/minute without performance degradation or dropped sessions.",
-    category: "Site Reliability",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-    tags: ["AWS", "Akamai CDN", "Kubernetes", "k6 Load Test", "Terraform"],
+    title: "Production Observability & SLA Monitoring Hub",
+    tagline: "Proactive alert noise reduction & telemetry with Prometheus, Grafana, Splunk & CloudWatch",
+    description: "Implemented a full-stack observability suite establishing SLIs, SLOs, and error budgets for microservices.",
+    longDescription: "Engineered unified dashboards for latency, throughput, error rates, and infrastructure health. Reduced MTTR by 30% and alert noise by 40%, empowering on-call SRE teams with actionable alerts.",
+    category: "Observability",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
+    tags: ["Prometheus", "Grafana", "Splunk", "CloudWatch", "SLI/SLO", "Error Budget"],
     featured: false,
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com",
+    demoUrl: "https://github.com/shubham8756/",
+    githubUrl: "https://github.com/shubham8756/",
     metrics: [
-      { label: "Peak Capacity", value: "10M RPM" },
-      { label: "Downtime", value: "0 seconds" }
+      { label: "Alert Noise Cut", value: "40%" },
+      { label: "MTTR Reduction", value: "30%" }
     ]
   },
   {
     id: "proj-5",
-    title: "Zero-Downtime Blue/Green CI/CD Pipeline",
-    tagline: "Automated GitHub Actions pipeline with automated security scanning & canary deployment",
-    description: "Built modular CI/CD workflows using GitHub Actions, Docker, SonarQube, and Argo Rollouts for automated testing, container scanning, and zero-downtime release.",
-    longDescription: "Automated vulnerability scanning with Trivy and Snyk, enforcing strict compliance policies prior to production registry pushes.",
-    category: "DevOps & CI/CD",
+    title: "Zero-Downtime CI/CD Automation Pipeline",
+    tagline: "Automated Jenkins & GitHub Actions workflows with Blue-Green deployments",
+    description: "Optimized deployment pipelines with Jenkins, GitHub Actions, Maven, and Ansible for zero-downtime releases.",
+    longDescription: "Accelerated release velocity by cutting deployment time from 15 minutes down to 6 minutes. Enforced automated health checks, rollback triggers, and blue-green deployment strategies to ensure zero customer impact.",
+    category: "CI/CD & Automation",
     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&q=80&w=800",
-    tags: ["GitHub Actions", "Docker", "Trivy", "Argo Rollouts", "Go"],
+    tags: ["Jenkins", "GitHub Actions", "Ansible", "Maven", "Blue-Green Deployment", "Python"],
     featured: false,
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com"
+    demoUrl: "https://github.com/shubham8756/",
+    githubUrl: "https://github.com/shubham8756/",
+    metrics: [
+      { label: "Deploy Time", value: "15m -> 6m" },
+      { label: "Pipeline Errors", value: "-25%" }
+    ]
   }
 ];
 
 export const initialSkills: Skill[] = [
-  // Containers & Orchestration
-  { id: "sk-1", name: "Kubernetes (EKS & GKE)", category: "Containers & Orchestration", level: 96, isTopSkill: true },
-  { id: "sk-2", name: "Docker & Container Security", category: "Containers & Orchestration", level: 94, isTopSkill: true },
-  { id: "sk-3", name: "Helm & Kustomize", category: "Containers & Orchestration", level: 90, isTopSkill: true },
-  { id: "sk-4", name: "ArgoCD & GitOps", category: "Containers & Orchestration", level: 92, isTopSkill: true },
-  { id: "sk-5", name: "Istio Service Mesh", category: "Containers & Orchestration", level: 85, isTopSkill: false },
+  // Cloud
+  { id: "sk-1", name: "AWS (EKS, EC2, VPC, S3, IAM, SQS/SNS)", category: "Cloud", level: 95, isTopSkill: true },
+  { id: "sk-2", name: "Google Cloud Platform (GCP)", category: "Cloud", level: 90, isTopSkill: true },
 
-  // Cloud & Infrastructure
-  { id: "sk-6", name: "AWS (EKS, EC2, S3, IAM, VPC)", category: "Cloud & Infrastructure", level: 95, isTopSkill: true },
-  { id: "sk-7", name: "GCP (GKE, Cloud Run, IAM)", category: "Cloud & Infrastructure", level: 90, isTopSkill: true },
-  { id: "sk-8", name: "Terraform & CloudFormation", category: "Cloud & Infrastructure", level: 95, isTopSkill: true },
-  { id: "sk-9", name: "Azure Basics & Hybrid Cloud", category: "Cloud & Infrastructure", level: 80, isTopSkill: false },
+  // Containers
+  { id: "sk-3", name: "Kubernetes (EKS / GKE)", category: "Containers", level: 95, isTopSkill: true },
+  { id: "sk-4", name: "Docker & Containerization", category: "Containers", level: 92, isTopSkill: true },
 
-  // Observability & Monitoring
-  { id: "sk-10", name: "Datadog & APM Tracing", category: "Observability & Monitoring", level: 94, isTopSkill: true },
-  { id: "sk-11", name: "Prometheus & Grafana", category: "Observability & Monitoring", level: 92, isTopSkill: true },
-  { id: "sk-12", name: "OpenTelemetry & ELK Stack", category: "Observability & Monitoring", level: 88, isTopSkill: false },
-  { id: "sk-13", name: "PagerDuty & SLO/SLI Setup", category: "Observability & Monitoring", level: 90, isTopSkill: false },
+  // Programming
+  { id: "sk-5", name: "Python", category: "Programming", level: 88, isTopSkill: true },
+  { id: "sk-6", name: "Java / Core Java", category: "Programming", level: 85, isTopSkill: false },
+  { id: "sk-7", name: "Shell Scripting (Bash)", category: "Programming", level: 92, isTopSkill: true },
+  { id: "sk-8", name: "SQL", category: "Programming", level: 85, isTopSkill: false },
 
-  // DevOps & CI/CD
-  { id: "sk-14", name: "GitHub Actions & GitLab CI", category: "DevOps & CI/CD", level: 95, isTopSkill: true },
-  { id: "sk-15", name: "Jenkins & Argo Rollouts", category: "DevOps & CI/CD", level: 88, isTopSkill: false },
+  // CI/CD
+  { id: "sk-9", name: "Jenkins & Maven Pipelines", category: "CI/CD", level: 92, isTopSkill: true },
+  { id: "sk-10", name: "GitHub Actions", category: "CI/CD", level: 90, isTopSkill: true },
+  { id: "sk-11", name: "Ansible", category: "CI/CD", level: 88, isTopSkill: false },
 
-  // Languages & Security
-  { id: "sk-16", name: "Python & Automation Scripts", category: "Languages & Security", level: 88, isTopSkill: true },
-  { id: "sk-17", name: "Bash / Shell Scripting", category: "Languages & Security", level: 92, isTopSkill: true },
-  { id: "sk-18", name: "Go (Golang)", category: "Languages & Security", level: 82, isTopSkill: false },
-  { id: "sk-19", name: "HashiCorp Vault & Secret Manager", category: "Languages & Security", level: 86, isTopSkill: false }
+  // Observability
+  { id: "sk-12", name: "Prometheus & Grafana", category: "Observability", level: 94, isTopSkill: true },
+  { id: "sk-13", name: "Splunk & AWS CloudWatch", category: "Observability", level: 92, isTopSkill: true },
+
+  // Performance Engineering
+  { id: "sk-14", name: "Apache JMeter", category: "Performance Engineering", level: 95, isTopSkill: true },
+  { id: "sk-15", name: "Load, Stress & Soak Testing", category: "Performance Engineering", level: 92, isTopSkill: false },
+  { id: "sk-16", name: "Capacity Planning & Bottleneck Analysis", category: "Performance Engineering", level: 90, isTopSkill: false },
+
+  // SRE & Operations
+  { id: "sk-17", name: "Incident Management & RCA", category: "SRE", level: 94, isTopSkill: true },
+  { id: "sk-18", name: "SLI / SLO & Error Budgets", category: "SRE", level: 92, isTopSkill: true },
+  { id: "sk-19", name: "Blue-Green Deployment & Auto Scaling", category: "SRE", level: 90, isTopSkill: false },
+
+  // Automation & Infrastructure
+  { id: "sk-20", name: "Terraform & CloudFormation", category: "Automation", level: 94, isTopSkill: true },
+  { id: "sk-21", name: "Apache Kafka", category: "Automation", level: 85, isTopSkill: false },
+  { id: "sk-22", name: "Git & Version Control", category: "Automation", level: 95, isTopSkill: false },
+  { id: "sk-23", name: "Linux Administration & Debugging", category: "Automation", level: 94, isTopSkill: false }
 ];
 
 export const initialCertifications: Certification[] = [
   {
     id: "cert-1",
-    title: "AWS Certified Solutions Architect – Associate",
-    issuer: "Amazon Web Services (AWS)",
-    issueDate: "Verified Certification",
+    title: "Google Cloud Certified: Associate Cloud Engineer",
+    issuer: "Google Cloud Platform (GCP)",
+    issueDate: "Verified",
     category: "Cloud"
   },
   {
     id: "cert-2",
-    title: "Google Cloud Certified Professional Cloud Architect",
-    issuer: "Google Cloud (GCP)",
-    issueDate: "Verified Certification",
+    title: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services (AWS)",
+    issueDate: "Verified",
     category: "Cloud"
   },
   {
     id: "cert-3",
-    title: "Certified Kubernetes Administrator (CKA)",
-    issuer: "Cloud Native Computing Foundation (CNCF)",
-    issueDate: "Verified Certification",
-    category: "Kubernetes"
+    title: "AWS Certified AI Practitioner",
+    issuer: "Amazon Web Services (AWS)",
+    issueDate: "Verified",
+    category: "Cloud & AI"
   },
   {
     id: "cert-4",
-    title: "HashiCorp Certified: Terraform Associate",
-    issuer: "HashiCorp",
-    issueDate: "Verified Certification",
-    category: "Infrastructure as Code"
+    title: "Microsoft Certified: Azure Fundamentals",
+    issuer: "Microsoft",
+    issueDate: "Verified",
+    category: "Cloud"
   },
   {
     id: "cert-5",
-    title: "GitHub Certified Developer & Copilot Specialist",
-    issuer: "GitHub",
-    issueDate: "Verified Certification",
-    category: "DevOps & AI"
+    title: "Udemy Labs - Online Kubernetes Lab for Beginners - Hands On",
+    issuer: "Udemy Labs",
+    issueDate: "Verified",
+    category: "Containers"
+  },
+  {
+    id: "cert-6",
+    title: "Core Java Certification",
+    issuer: "Core Java",
+    issueDate: "Verified",
+    category: "Programming"
+  },
+  {
+    id: "cert-7",
+    title: "Machine Learning with Python - Level 1",
+    issuer: "Python Machine Learning",
+    issueDate: "Verified",
+    category: "Programming & ML"
   }
 ];
 
@@ -182,90 +207,136 @@ export const initialAwards: Award[] = [
   {
     id: "award-1",
     title: "Apple Online Store Launch Recognition Award",
-    issuer: "Apple e-Commerce Operations",
-    date: "Special Recognition",
-    description: "Awarded for exceptional site reliability performance, continuous uptime, and zero-latency CDN orchestration during major Apple product online store launch events."
-  },
-  {
-    id: "award-2",
-    title: "SRE Excellence Award",
-    issuer: "Engineering Leadership",
-    date: "Annual Honor",
-    description: "Recognized for driving 99.99% availability SLA, reducing MTTR by 45%, and architecting zero-downtime microservice failovers."
+    issuer: "Apple COE / Wipro",
+    date: "Recognition Award",
+    description: "Honored for operational excellence, high-concurrency performance engineering, and platform stability during high-traffic Apple product online store launches."
   }
 ];
 
 export const initialExperience: WorkExperience[] = [
   {
     id: "exp-1",
-    role: "Senior Site Reliability Engineer",
-    company: "Cloud & Enterprise Tech Solutions",
-    period: "2022 - Present",
+    role: "Software Engineer (Site Reliability Engineer)",
+    company: "Xoriant",
+    period: "May 2026 - Present",
     location: "Bengaluru, India",
-    description: "Leading SRE initiatives across multi-cloud environments (AWS & GCP), driving zero-downtime reliability, and managing production EKS clusters.",
+    description: "Driving cloud infrastructure scaling, reliability engineering, and DevOps automation across AWS and GCP environments.",
     highlights: [
-      "Architected multi-region Kubernetes clusters serving high-traffic applications with 99.99% availability.",
-      "Engineered automated GitOps CI/CD pipelines with ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 75%.",
-      "Implemented Karpenter auto-scaling and spot instance policies, cutting infrastructure spend by $120,000 annually.",
-      "Honored with Apple Store Launch Recognition for seamless capacity handling during critical release events."
+      "Architecting scalable and resilient cloud infrastructure across AWS and GCP using Terraform and CloudFormation.",
+      "Delivering zero-downtime releases for containerized workloads on AWS EKS with automated Horizontal Pod Autoscaling (HPA).",
+      "Building advanced observability with Prometheus, Grafana, Splunk, and CloudWatch, reducing MTTR by 30%.",
+      "Automating operational workflows with Python, Shell scripting, and Ansible to cut manual effort by 35%."
     ],
-    techStack: ["Kubernetes", "AWS EKS", "GCP GKE", "Terraform", "ArgoCD", "Datadog", "Python", "Bash"],
+    techStack: ["AWS", "GCP", "Kubernetes", "EKS", "Docker", "Terraform", "Prometheus", "Grafana", "Splunk", "Python", "Shell"],
     current: true
   },
   {
     id: "exp-2",
-    role: "DevOps & Cloud Infrastructure Engineer",
-    company: "ScaleTech Systems",
-    period: "2020 - 2022",
+    role: "Project Engineer - Apple COE (Site Reliability Engineering & Cloud)",
+    company: "Wipro",
+    period: "March 2023 - April 2026 (3 years 2 months)",
     location: "Bengaluru, India",
-    description: "Managed cloud provisioning, automated container security scanning, and established observability dashboards.",
+    description: "Managed site reliability engineering, performance testing, and AWS cloud infrastructure for the Apple Online Store handling millions of users.",
     highlights: [
-      "Built centralized Grafana & Prometheus monitoring hub across 80+ microservices.",
-      "Automated infrastructure state management using Terraform modules and AWS CloudFormation.",
-      "Reduced MTTR by 45% through custom SLI/SLO dashboards and smart PagerDuty alert grouping."
+      "Managed reliability for high-traffic Apple Online Store systems handling millions of users during major product launch events.",
+      "Defined SLIs/SLOs and error budgets to balance platform reliability with rapid release velocity.",
+      "Built scalable AWS infrastructure (EC2, EKS, VPC, S3, IAM, SQS/SNS) using Terraform and CloudFormation.",
+      "Led performance engineering and load testing for 500+ backend services using Apache JMeter.",
+      "Improved platform availability to 99.95%, reduced MTTR by 30%, and cut alert noise by 40%.",
+      "Optimized CI/CD pipelines (Jenkins, GitHub Actions), reducing deployment time from 15 to 6 minutes and failure rates by 25%.",
+      "Troubleshot complex Kubernetes production issues including CrashLoopBackOff, OOMKilled, Ingress, and TCP/IP/DNS routing bottlenecks."
     ],
-    techStack: ["AWS", "Docker", "Prometheus", "Grafana", "Terraform", "Jenkins", "GitHub Actions"]
+    techStack: ["AWS", "EKS", "Kubernetes", "Apache JMeter", "Splunk", "Prometheus", "Grafana", "Jenkins", "GitHub Actions", "Terraform", "Ansible", "Python", "Shell"]
   },
   {
     id: "exp-3",
-    role: "Systems & Infrastructure Administrator",
-    company: "Apex IT Services",
-    period: "2019 - 2020",
+    role: "Operations Engineer",
+    company: "PW (PhysicsWallah)",
+    period: "February 2023 - March 2023",
     location: "India",
-    description: "Provided core server administration, Linux performance tuning, network security, and database backup routines.",
+    description: "Supported production platform operations, incident triage, and monitoring workflows.",
     highlights: [
-      "Migrated legacy monolithic workloads into Dockerized container environments.",
-      "Authored 50+ shell scripts for automated backup, security patching, and log archiving."
+      "Monitored production infrastructure metrics and supported quick incident recovery.",
+      "Assisted in log analysis and system health checks during high usage periods."
     ],
-    techStack: ["Linux", "Docker", "Bash", "Python", "Nginx", "MySQL"]
+    techStack: ["Linux", "AWS", "Monitoring", "Shell Scripting"]
+  },
+  {
+    id: "exp-4",
+    role: "AWS ReStart - Cloud Practitioner Trainee",
+    company: "Tata STRIVE",
+    period: "September 2022 - January 2023",
+    location: "Gurugram, India",
+    description: "Comprehensive hands-on training on AWS Cloud concepts, architecture, security, and cloud automation.",
+    highlights: [
+      "Mastered core AWS infrastructure services, IAM security policies, and VPC networking.",
+      "Built automated cloud labs and foundational infrastructure scripts."
+    ],
+    techStack: ["AWS", "Cloud Practitioner", "Linux", "Networking"]
+  },
+  {
+    id: "exp-5",
+    role: "Java Full Stack Developer Trainee",
+    company: "StackRoute Learning",
+    period: "May 2022 - August 2022",
+    location: "Uttar Pradesh, India",
+    description: "Full-stack development training focusing on Core Java, SQL databases, and web services.",
+    highlights: [
+      "Developed web application modules using Java, SQL, and RESTful web services.",
+      "Applied object-oriented programming principles and version control with Git."
+    ],
+    techStack: ["Java", "SQL", "Git", "REST APIs"]
+  },
+  {
+    id: "exp-6",
+    role: "System Engineer Intern",
+    company: "Infosys",
+    period: "February 2022 - May 2022",
+    location: "Mysore, Karnataka, India",
+    description: "System engineering internship focused on software development fundamentals, enterprise IT workflows, and database querying.",
+    highlights: [
+      "Gained hands-on experience in enterprise software engineering and technical problem solving.",
+      "Created backend scripts and executed system validation tests."
+    ],
+    techStack: ["Java", "SQL", "Linux", "Git"]
+  },
+  {
+    id: "exp-7",
+    role: "Software Engineer Intern",
+    company: "Nucleus Software",
+    period: "January 2022 - February 2022",
+    location: "India",
+    description: "Software development and engineering practice on banking and financial technology solutions.",
+    highlights: [
+      "Worked on core software modules and technical documentation."
+    ],
+    techStack: ["Java", "SQL", "Software Testing"]
   }
 ];
 
 export const initialEducation: Education[] = [
   {
     id: "edu-1",
-    degree: "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
-    institution: "Premier Technical University",
-    period: "2015 - 2019",
-    description: "Specialized in Distributed Systems, Computer Networks, Operating Systems, and Cloud Architectures."
+    degree: "Bachelor of Technology (B.Tech) in Information Technology",
+    institution: "United College Of Engineering and Research",
+    period: "July 2018 - June 2022",
+    description: "Specialized in Information Technology, Distributed Systems, Database Management Systems, Computer Networks, and Operating Systems."
+  },
+  {
+    id: "edu-2",
+    degree: "Intermediate (Class XII) - PCM",
+    institution: "St. Francis School",
+    period: "April 2017 - May 2018",
+    description: "Physics, Chemistry, and Mathematics (PCM)."
+  },
+  {
+    id: "edu-3",
+    degree: "High School (Class X) - Science",
+    institution: "St. Francis School",
+    period: "April 2015 - May 2016",
+    description: "General Science & Mathematics."
   }
 ];
 
-export const initialTestimonials: Testimonial[] = [
-  {
-    id: "test-1",
-    name: "Rajesh Sharma",
-    role: "VP of Infrastructure & Engineering",
-    company: "CloudTech Enterprise",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-    content: "Shubham is an incredible Site Reliability Engineer. When our high-concurrency launches hit, Shubham's Kubernetes and cloud infrastructure design ensures flawless execution with zero downtime."
-  },
-  {
-    id: "test-2",
-    name: "Ananya Roy",
-    role: "Engineering Director",
-    company: "ScaleTech Solutions",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-    content: "Shubham's deep expertise in Terraform, AWS, and Datadog completely transformed our operations. He reduced our incident response time drastically and saved our team over $120k in cloud costs."
-  }
-];
+export const initialTestimonials: Testimonial[] = [];
+
