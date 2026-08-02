@@ -14,10 +14,10 @@ export const initialProfile: PortfolioProfile = {
     { platform: "email", url: "mailto:shubhampandey8756@gmail.com", label: "Email" },
   ],
   stats: {
-    yearsExperience: 3,
-    projectsCompleted: 20,
-    githubContributions: 1450,
-    happyClients: 8,
+    yearsExperience: 3.5,
+    projectsCompleted: 2,
+    githubContributions: 15,
+    happyClients: 2,
   }
 };
 
